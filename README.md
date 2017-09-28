@@ -1,3 +1,9 @@
-# Conv GRU pytorch  
+# Conv GRU PyTorch  
 
-simple Convolutional GRU for pytorch.
+
+Convolutional GRU for PyTorch.
+
+
+# References
+
+https://arxiv.org/pdf/1511.06432.pdf
