@@ -1,6 +1,6 @@
 
 ###################################################
-# Nicolo Savioli, 2017 -- Conv-GRU pytorch v 1.0  #
+# Nicolo Savioli, 2021 -- Conv-GRU pytorch v 1.1  #
 ###################################################
 import torch
 from torch import nn
@@ -52,18 +52,19 @@ def test(num_seqs,channels_img,\
         print("==> test on the GPU active")
         MSE_criterion = MSE_criterion.cuda()
     err           = 0
-    for e in xrange(max_epoch):
-        for time in xrange(num_seqs):
-            h_next = model(input_gru[time], None)
-            err   += MSE_criterion(h_next [0], target_gru[time])
-            print(err.data[0])
+    h_next        = None
+    for e in range(max_epoch):
+        for time in range(num_seqs):
+            h_next = model(input_gru[time], h_next)
+            err   += MSE_criterion(h_next [0], target_gru[time])            
+            print("\n ... Error: "+ str(err.cpu().detach().numpy()))
     
 def main():
     num_seqs     = 10
     hidden_size  = 3
     channels_img = 3 
     size_image   = 256 
-    max_epoch    = 10
+    max_epoch    = 100
     cuda_flag    = False
     kernel_size  = 3
     print('Init Conv GRUs model:')
