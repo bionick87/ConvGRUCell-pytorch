@@ -2,12 +2,14 @@
 ###################################################
 # Nicolo Savioli, 2021 -- Conv-GRU pytorch v 1.1  #
 ###################################################
+
 import torch
 from torch import nn
 import torch.nn.functional as f
 from torch.autograd import Variable
 
 class ConvGRUCell(nn.Module):
+
     
     def __init__(self,input_size,hidden_size,kernel_size,cuda_flag):
         super(ConvGRUCell,self).__init__()
